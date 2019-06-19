@@ -3,9 +3,8 @@
 *Author TheOnlySmartBoy<o2jose43@gmail.com>
 */
 require '../db/connector.php';
-$uname = "";
-$email = "test@test.com";
-$pass = "MasterTosby2";
+$email = mysqli_real_escape_string($_POST["email"]);
+$pass = mysqli_real_escape_string($_POST["password"]);
 $query ="SELECT * FROM tbl_users WHERE email= '$email' AND password = '$pass'";
 $result = mysqli_query($conn, $query);
 if(mysqli_num_rows($result)>0){
