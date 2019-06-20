@@ -1,15 +1,45 @@
 <?php
-/*
-*Author TheOnlySmartBoy<o2jose43@gmail.com>
-*/
-require '../db/connector.php';
-$email = mysqli_real_escape_string($_POST["email"]);
-$pass = mysqli_real_escape_string($_POST["password"]);
-$query ="SELECT * FROM tbl_users WHERE email= '$email' AND password = '$pass'";
-$result = mysqli_query($conn, $query);
-if(mysqli_num_rows($result)>0){
-    echo 'Login Successfull';
-}
-else{
-    echo 'Login Failed';
+
+if ($_SERVER['REQUEST_METHOD']=='POST') {
+require_once '../db/connector.php';
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM users_table WHERE email='$email' ";
+
+    $response = mysqli_query($conn, $sql);
+
+    $result = array();
+    $result['login'] = array();
+    
+    if ( mysqli_num_rows($response) === 1 ) {
+        
+        $row = mysqli_fetch_assoc($response);
+
+        if ( password_verify($password, $row['password']) ) {
+            
+            $index['name'] = $row['name'];
+            $index['email'] = $row['email'];
+            $index['id'] = $row['id'];
+
+            array_push($result['login'], $index);
+
+            $result['success'] = "1";
+            $result['message'] = "success";
+            echo json_encode($result);
+
+            mysqli_close($conn);
+
+        } else {
+
+            $result['success'] = "0";
+            $result['message'] = "error";
+            echo json_encode($result);
+
+            mysqli_close($conn);
+
+        }
+
+    }
+
 }
