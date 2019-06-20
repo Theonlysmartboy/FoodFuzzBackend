@@ -1,10 +1,8 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD']=='POST') {
-    
-    $id = $_POST['id'];
-
-    require_once '../db/connector.php';
+     require_once '../db/connector.php';
+    $id = mysqli_real_escape_string($conn, $_POST['id']);
 
     $sql = "SELECT * FROM users_table WHERE id='$id' ";
 
@@ -27,8 +25,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
         }
  
    }
- 
- }else {
+ else {
  
      $result["success"] = "0";
      $result["message"] = "Error!";
@@ -36,5 +33,4 @@ if ($_SERVER['REQUEST_METHOD']=='POST') {
  
      mysqli_close($conn);
  }
- 
- ?>
+}

@@ -2,8 +2,8 @@
 
 if ($_SERVER['REQUEST_METHOD']=='POST') {
 require_once '../db/connector.php';
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
     $sql = "SELECT * FROM users_table WHERE email='$email' ";
 

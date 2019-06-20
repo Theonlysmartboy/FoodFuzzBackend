@@ -1,14 +1,12 @@
 <?php
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    $id = $_POST['id'];
-    $photo = $_POST['photo'];
+ require_once '../db/connector.php';
+    $id = mysqli_real_escape_string($conn, $_POST['id']);
+    $photo = mysqli_real_escape_string($conn, $_POST['photo']);
 
     $path = "profile_image/$id.jpeg";
-    $finalPath = "http://192.168.1.104/android_register_login/".$path;
-
-    require_once '../db/connector.php';
+    $finalPath = "http://192.168.1.104/foodfuzzbackend/".$path;
 
     $sql = "UPDATE users_table SET photo='$finalPath' WHERE id='$id' ";
 
@@ -27,5 +25,3 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
 }
-
-?>

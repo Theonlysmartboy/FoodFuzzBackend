@@ -1,14 +1,12 @@
 <?php
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
+ require_once '../db/connector.php';
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $id = mysqli_real_escape_string($conn, $_POST['id']);
 
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $id = $_POST['id'];
-
-    require_once '../db/connector.php';
-
-    $sql = "UPDATE users_table SET name='$name', email='$email' WHERE id='$id' ";
+       $sql = "UPDATE users_table SET name='$name', email='$email' WHERE id='$id' ";
 
     if(mysqli_query($conn, $sql)) {
 
