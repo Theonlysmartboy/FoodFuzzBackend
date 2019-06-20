@@ -5,7 +5,7 @@ require_once '../db/connector.php';
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    $sql = "SELECT * FROM users_table WHERE email='$email' ";
+    $sql = "SELECT * FROM tbl_users WHERE email='$email' ";
 
     $response = mysqli_query($conn, $sql);
 
@@ -23,7 +23,6 @@ require_once '../db/connector.php';
             $index['id'] = $row['id'];
 
             array_push($result['login'], $index);
-
             $result['success'] = "1";
             $result['message'] = "success";
             echo json_encode($result);
