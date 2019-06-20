@@ -6,7 +6,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $photo = mysqli_real_escape_string($conn, $_POST['photo']);
 
     $path = "profile_image/$id.jpeg";
-    $finalPath = "http://192.168.1.104/foodfuzzbackend/".$path;
+    $finalPath = "http://192.168.100.250:8082/foodfuzzbackend/".$path;
 
     $sql = "UPDATE users_table SET photo='$finalPath' WHERE id='$id' ";
 
