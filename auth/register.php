@@ -2,9 +2,9 @@
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once '../db/connector.php';
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
     $pass = password_hash($password, PASSWORD_DEFAULT);
 
