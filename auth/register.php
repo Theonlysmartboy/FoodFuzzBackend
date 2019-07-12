@@ -4,11 +4,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once '../db/connector.php';
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $tel = mysqli_real_escape_string($conn, $_POST['tel']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
     $pass = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO tbl_users (name, email, password) VALUES ('$name', '$email', '$pass')";
+    $sql = "INSERT INTO tbl_users (name, email, tel, password) VALUES ('$name', '$email', '$tel', '$pass')";
 
     if (mysqli_query($conn, $sql)) {
         $result["success"] = "1";
