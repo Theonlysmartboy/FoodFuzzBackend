@@ -1,7 +1,7 @@
 <?php
 require_once '../../db/connector.php';
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $sql = "SELECT * FROM view_products WHERE category= 'food' ";
+    $sql = "SELECT * FROM view_products";
     $response = mysqli_query($conn, $sql);
     $result = array();
     $result['food'] = array();

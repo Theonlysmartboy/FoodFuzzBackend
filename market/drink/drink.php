@@ -4,7 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $sql = "SELECT * FROM view_products WHERE category= 'drink' ";
     $response = mysqli_query($conn, $sql);
     $result = array();
-    $result['food'] = array();
+    $result['drink'] = array();
     if (mysqli_num_rows($response) === 1) {
         $row = mysqli_fetch_assoc($response);
         $index['name'] = $row['name'];
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $index['cost'] = $row['cost'];
         $index['seller'] = $row['restaurant'];
         $index['id'] = $row['id'];
-        array_push($result['food'], $index);
+        array_push($result['drink'], $index);
         $result['success'] = "1";
         $result['message'] = "success";
         echo json_encode($result);
