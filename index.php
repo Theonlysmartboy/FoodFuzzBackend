@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $index['name'] = $row['name'];
             $index['email'] = $row['email'];
             $index['id'] = $row['id'];
-
+            print_r($index);
 
             mysqli_close($conn);
         } else {
