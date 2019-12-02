@@ -15,15 +15,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //Reset successfull send email
         $to = $email;
         $subject = 'New password';
-        $message = 'Please log in using the password:  ' . $pass . "\r\n" .
+        $message = 'Please log in using the password:  ' . $password . "\r\n" .
                 'And proceed to set a new password for your account';
         $headers = 'From: noreply@foodfuzz.co.ke' . "\r\n" .
                 'Reply-To: info@foodfuzz.co.ke' . "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
         if (mail($to, $subject, $message, $headers)) {
             $response["error"] = FALSE;
-            $result["message"] = "success";
-            echo json_encode($result);
+            $response["message"] = "success";
+            echo json_encode($response);
             mysqli_close($conn);
         } else {
             // Unable to send email
