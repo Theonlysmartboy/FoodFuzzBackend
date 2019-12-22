@@ -1,7 +1,7 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require_once '../db/connector.php';
+    require_once '../../db/connector.php';
     $orderId = mysqli_real_escape_string($conn, $_POST['orderId']);
     $client = mysqli_real_escape_string($conn, $_POST['client']);
     $name = mysqli_real_escape_string($conn, $_POST['name']);

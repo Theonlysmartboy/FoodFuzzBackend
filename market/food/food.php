@@ -1,7 +1,7 @@
 <?php
 require_once '../../db/connector.php';
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $sql = "SELECT * FROM view_products WHERE category= 'food' ";
+    $sql = "SELECT products.id AS id, products.name, products.descr, products.image, products.cost, restaurants.r_name as restaurant, products.restaurant_id as seller FROM `products` INNER JOIN restaurants on products.restaurant_id = restaurants.id WHERE products.category_id = 1";
     $response = mysqli_query($conn, $sql);
     $result = array();
     $result['food'] = array();
@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $index['image'] = $row['image'];
         $index['cost'] = $row['cost'];
         $index['seller'] = $row['restaurant'];
+        $index['sellerId'] = $row['seller'];
         $index['id'] = $row['id'];
         array_push($result['food'], $index);
         $result['success'] = "1";
