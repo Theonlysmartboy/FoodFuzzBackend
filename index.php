@@ -4,9 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     session_start();
     $email = mysqli_real_escape_string($conn, $_POST['uemail']);
     $password = mysqli_real_escape_string($conn, $_POST['upwd']);
-
     $sql = "SELECT * FROM tbl_users WHERE email='$email' ";
-
     $response = mysqli_query($conn, $sql);
     if (mysqli_num_rows($response) === 1) {
 
