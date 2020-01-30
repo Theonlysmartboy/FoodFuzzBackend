@@ -7,8 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $totalAmt = mysqli_real_escape_string($conn, $_POST['total']);
     $status = 0;
     $sql = "INSERT INTO payments (orderid, delivery_fee, total, status) "
-            . "VALUES ('$orderId', '$', '$name', '$seller', '$amount', "
-            . "'$quantity', '$longitude', '$latitude', '$location', '$status')";
+            . "VALUES ('$orderId', '$delivery_fee', '$totalAmt', '$status')";
 
     if (mysqli_query($conn, $sql)) {
         $result["success"] = "1";
