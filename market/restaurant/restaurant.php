@@ -1,21 +1,19 @@
 <?php
 require_once '../../db/connector.php';
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $sql = "SELECT * FROM view_products WHERE category= 'food' ";
+    $sql = "SELECT id, r_name as name, logo FROM `restaurants`";
     $response = mysqli_query($conn, $sql);
     $result = array();
-    $result['food'] = array();
-    if (mysqli_num_rows($response) === 1) {
-        $row = mysqli_fetch_assoc($response);
+    $result['restaurant'] = array();
+    if (mysqli_num_rows($response) > 0) {
+         while($row = mysqli_fetch_assoc($response)){
         $index['name'] = $row['name'];
-        $index['description'] = $row['descr'];
-        $index['image'] = $row['image'];
-        $index['cost'] = $row['cost'];
-        $index['seller'] = $row['restaurant'];
+        $index['image'] = $row['logo'];
         $index['id'] = $row['id'];
-        array_push($result['food'], $index);
+        array_push($result['restaurant'], $index);
         $result['success'] = "1";
         $result['message'] = "success";
+         }
         echo json_encode($result);
         mysqli_close($conn);
     } else {
