@@ -5,8 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $orderId = mysqli_real_escape_string($conn, $_POST['orderId']);
     $confCode = mysqli_real_escape_string($conn, $_POST['code']);
     $status = 1;
-    $sql = "INSERT INTO payments (orderid, delivery_fee, total, status) "
-            . "VALUES ('$orderId', '$delivery_fee', '$totalAmt', '$status')";
+    $sql = " UPDATE tutorials_tbl SET tutorial_title = 'Learning JAVA' WHERE tutorial_id = 3";
 
     if (mysqli_query($conn, $sql)) {
         $result["success"] = "1";
